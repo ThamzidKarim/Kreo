@@ -1,8 +1,8 @@
 import './index.css';
 
-import Header from "./Header.tsx"
-import NavBar from "./NavBar.tsx";
-import Card from "./Card.tsx";
+import Header from "./components/Header.tsx"
+import NavBar from "./components/NavBar.tsx";
+import Card from "./components/Card.tsx";
 
 function App() {
 
