@@ -1,14 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './index.css'
-import App from './App.tsx'
-import Home from './pages/Home.tsx'
-import Editor from './pages/Editor.tsx'
-import Library from './pages/Library.tsx'
-import Login from './pages/Login.tsx'
-import Scenes from './pages/Scenes.tsx'
-import Story from './pages/Story.tsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router';
+import './index.css';
+import App from './App.tsx';
+import Home from './pages/Home.tsx';
+import Editor from './pages/Editor.tsx';
+import Library from './pages/Library.tsx';
+import Login from './pages/Login.tsx';
+import Scenes from './pages/Scenes.tsx';
+import Story from './pages/Story.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
