@@ -3,14 +3,18 @@ import Header from "../components/Header.tsx";
 import NavBar from "../components/NavBar.tsx";
 
 function Home() {
-    return(
+    return (
         <div>
             <Header />
             <NavBar />
-            <h1>Home</h1>
-            <div className="flex justify-center items-center h-screen">
-                <Card />
-            </div>
+            <main className="mt-16">
+                <section className="flex justify-center items-start">
+                    <h1>Home</h1>
+                </section>
+                <section className="flex justify-center items-center">
+                    <Card />
+                </section>
+            </main>
         </div>
     );
 }
