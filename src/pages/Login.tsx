@@ -6,7 +6,9 @@ function Login() {
         <div>
             <Header />
             <NavBar />
-            <h1>Login</h1>
+            <div className="flex justify-center items-start h-screen mt-16">
+                <h1>Login</h1>
+            </div>
         </div>
     );
 

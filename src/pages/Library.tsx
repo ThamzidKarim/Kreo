@@ -6,7 +6,9 @@ function Library() {
         <div>
             <Header />
             <NavBar />
-            <h1>Library</h1>
+            <div className="flex justify-center items-start h-screen mt-16">
+                <h1>Library</h1>
+            </div>
         </div>
     );
 
