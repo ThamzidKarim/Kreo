@@ -1,7 +1,12 @@
+import { Button } from '@headlessui/react'
+
 function Card() {
     return (
         <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm">
-            <h2 className="text-2xl font-bold mb-4">New Project</h2>
+            <Button className="rounded bg-sky-600 py-2 px-4 text-sm text-white
+             data-[hover]:bg-sky-500 data-[hover]:data-[active]:bg-sky-700">
+                New Project
+            </Button>
         </div>
     );
 }
