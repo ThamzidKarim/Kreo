@@ -9,7 +9,7 @@ function NavBar() {
                 <li><Link to="/story">Story</Link></li>
                 <li><Link to="/scenes">Scenes</Link></li>
                 <li><Link to="/editor">Editor</Link></li>
-                <li><Link to="/foryou">For You</Link></li>
+                <li><Link to="/for-you">For You</Link></li>
             </ul>
         </nav>
     );
