@@ -1,31 +1,18 @@
-import { useNavigate } from "react-router";
-import Header from "../components/Header.tsx";
 import NavBar from "../components/NavBar.tsx";
 
 function Home() {
-    const navigate = useNavigate();
-
-    const handleButtonClick = () => {
-        navigate("/new-project");
-    };
-
     return (
-        <div>
-            <Header />
+        <div className="min-h-screen bg-white">
             <NavBar />
-            <main className="mt-16">
-                <section className="flex justify-center items-start">
-                    <h1>Home</h1>
-                </section>
-                <section className="flex justify-center items-center">
-                    <button
-                        onClick={handleButtonClick}
-                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                    New Project
-                    </button>
-                </section>
-            </main>
+            <div className="flex justify-center ml-auto min-h-screen pt-[50px]">
+                <div className="relative w-[90%] max-w-[924px] h-[250px] bg-[#EBE7E7] rounded-[46px] left-[100px]">
+                    <div className="absolute w-[60px] h-px left-[20%] top-[50%] border border-black" />
+                    <div className="absolute w-[60px] h-px left-[23%] top-[40%] rotate-90 origin-top-left border border-black" />
+                    <div className="absolute top-[30%] left-[32%] text-[6vw] md:text-[84px] text-black/60 font-inter font-normal leading-none">
+                        New Project
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
