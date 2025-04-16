@@ -1,14 +1,13 @@
-import { Button } from '@headlessui/react'
 
-function Card() {
-    return (
-        <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm">
-            <Button className="rounded bg-sky-600 py-2 px-4 text-sm text-white
-             data-[hover]:bg-sky-500 data-[hover]:data-[active]:bg-sky-700">
-                New Project
-            </Button>
-        </div>
-    );
-}
+const Card = ({ title, imageUrl }) => {
+  return (
+    <div className="rounded-2xl shadow-md overflow-hidden bg-white hover:shadow-lg cursor-pointer">
+      <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+      <div className="p-4">
+        <h3 className="text-lg font-semibold">{title}</h3>
+      </div>
+    </div>
+  );
+};
 
-export default Card
+export default Card;
