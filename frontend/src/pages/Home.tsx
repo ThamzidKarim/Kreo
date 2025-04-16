@@ -12,7 +12,7 @@ function Home() {
                 {/* New Project Button */}
                 <Link
                     to="/new-project"
-                    className="relative w-[90%] max-w-[924px] h-[250px] bg-[#EBE7E7] rounded-[46px] hover:bg-[#adadad] cursor-pointer shadow-lg"
+                    className="relative ml-[250px] w-[90%] max-w-[924px] h-[250px] bg-[#EBE7E7] rounded-[46px] hover:bg-[#adadad] cursor-pointer shadow-lg"
                 >
                     <div className="absolute w-[60px] h-px left-[20%] top-[50%] border border-black" />
                     <div className="absolute w-[60px] h-px left-[23%] top-[40%] rotate-90 origin-top-left border border-black" />
