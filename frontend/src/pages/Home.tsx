@@ -2,11 +2,17 @@ import { Link } from "react-router";
 
 import NavBar from "../components/NavBar.tsx";
 import Card from "../components/Card.tsx";
+import ChatButton from "../components/ChatButton.tsx";
 
 function Home() {
     return (
         <div className="min-h-screen bg-white">
             <NavBar />
+
+            {/* Chat Button */}
+            <div className="absolute top-4 right-4 ">
+                <ChatButton />
+            </div>
 
             <div className="flex flex-col items-center gap-[50px] pt-[50px]">
                 {/* New Project Button */}
@@ -39,7 +45,7 @@ function Home() {
                         />
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     );
 }
