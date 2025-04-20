@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import NavBar from "../components/NavBar.tsx";
 import Card from "../components/Card.tsx";
 import ChatButton from "../components/ChatButton.tsx";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 function Home() {
     return (
@@ -20,8 +21,7 @@ function Home() {
                     to="/new-project"
                     className="relative ml-[250px] w-[90%] max-w-[924px] h-[250px] bg-[#EBE7E7] rounded-[46px] hover:bg-[#adadad] cursor-pointer shadow-lg"
                 >
-                    <div className="absolute w-[60px] h-px left-[20%] top-[50%] border border-black" />
-                    <div className="absolute w-[60px] h-px left-[23%] top-[40%] rotate-90 origin-top-left border border-black" />
+                    <PlusCircleIcon className="relative size-12 left-[210px] top-[100px]" />
                     <div className="absolute top-[30%] left-[32%] text-[6vw] md:text-[84px] text-black font-inter font-normal leading-none">
                         New Project
                     </div>
