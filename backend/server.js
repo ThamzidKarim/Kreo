@@ -1,28 +1,19 @@
-import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
-import { GoogleGenAI } from "@google/genai";
+/*
+ * Author: Thamzid Karim
+ * Date: 4/5/2025
+ *
+ * Entry point for the backend server deifning the routes and starting the server.
+ */
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import express from "express";
+import upload from "./routes/upload.js";
 
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+const app = express();
 
-const apiKey = process.env.GEMINI_API_KEY;
+app.use('/api', upload);
 
-if (!apiKey) {
-  throw new Error("Missing GEMINI_API_KEY in .env file");
-}
+const port = process.env.PORT || 3000;
 
-const ai = new GoogleGenAI({ apiKey });
-
-async function main() {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
-    contents: "How does AI work?",
-  });
-
-  console.log(response.text);
-}
-
-main();
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
