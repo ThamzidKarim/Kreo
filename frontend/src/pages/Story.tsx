@@ -17,7 +17,7 @@ function Story() {
     // Function to handle the "Generate Prompts" button click
     const handleGeneratePrompts = async () => {
         try {
-            const res = await fetch("http://localhost:5000/generate-prompts", {
+            const res = await fetch("http://localhost:5000/api/generate-prompts", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

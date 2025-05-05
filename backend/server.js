@@ -7,12 +7,16 @@
 
 import express from "express";
 import upload from "./routes/upload.js";
+import prompts from "./routes/prompts.js";
 
 const app = express();
 
-app.use('/api', upload);
+app.use(express.json()); 
 
-const port = process.env.PORT || 3000;
+app.use('/api', upload);
+app.use('/api', prompts);
+
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
