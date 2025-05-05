@@ -29,7 +29,7 @@ export const generatePrompts = async (text) => {
         `You are a scriptwriting assistant. Your task is to generate prompts for a script based on the provided text.
         You should provide a list of prompts that can be used to input into a text-to-image model.
         Ensure that prompts are clear, concise, and relevant to the text provided.
-        The prompts should be a single sentence in the format of a list, with each prompt on a new line, with no dashes or bullet points at the start of each line.
+        The prompts should be a single sentence in the format of a list, with each prompt on a new line, with no dashes, bullet points, or asterisks at the start of each line.
         The prompts should be creative and imaginative, suitable for a script.
         The prompts should be descriptive and detailed, providing enough information for the text-to-image model to generate an image.
         Scripts will have a scene header, action lines, and dialogue. Your task is to generate prompts for each small section of the script, which you deem fit.

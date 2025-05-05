@@ -6,28 +6,31 @@
 
 import { useLocation } from "react-router";
 import NavBar from "../components/NavBar";
+import PromptCard from "../components/PromptCard";
 
 function Scenes() {
     // useLocation hook to access the location object, which contains the state passed from the Story page
     const location = useLocation();
     const { prompts } = location.state || {};
 
-    return(
-        <div>
+    return (
+        <div className="flex flex-col h-screen">
             <NavBar />
-            <div className="flex justify-center items-start h-screen mt-16">
-                <h1>Storyboard</h1>
-            </div>
-            <div className="flex flex-col items-center mt-8">
-                {/* Display the prompts received from the Story page*/}
+
+            {/* Display the prompts received from the Story page*/}
+            <div className="flex overflow-x-auto space-x-4 py-4">
                 {prompts ? (
                     prompts.map((prompt: string, index: number) => (
-                        <p key={index} className="text-center">{prompt}</p>
+                        <PromptCard 
+                            key={index} 
+                            prompt={prompt} 
+                        />
                     ))
                 ) : (
                     <p>No prompts to display</p>
                 )}
             </div>
+
         </div>
     );
 

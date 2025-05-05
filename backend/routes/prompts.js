@@ -22,7 +22,9 @@ router.post("/generate-prompts", async (req, res) => {
 
         // Call the generatePrompts function to generate prompts
         const response = await generatePrompts(text);
-        const parsedResponse = response.split("\n").filter(line => line.trim() !== "");
+        const parsedResponse = response.split("\n")
+            .filter(line => line.trim() !== "")
+            .map(line => line.replace(/^\*+\s?/, '').trim());
         console.log("Generated content:", parsedResponse);
         return res.json({ message: "Prompts generated successfully", prompts: parsedResponse });
     } catch (error) {
