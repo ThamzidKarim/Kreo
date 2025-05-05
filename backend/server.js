@@ -8,8 +8,10 @@
 import express from "express";
 import upload from "./routes/upload.js";
 import prompts from "./routes/prompts.js";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 
 app.use(express.json()); 
 

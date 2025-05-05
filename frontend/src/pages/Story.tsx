@@ -1,9 +1,10 @@
 /*
  * Author: Thamzid Karim
  * Date: 5/5/2025
- * Description: Story page with textarea input and "Generate Prompts" button that sends the input text to the backend via POST.
+ * Story page with textarea input and "Generate Prompts" button that sends the input text to the backend via POST.
 */
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import NavBar from "../components/NavBar";
 import PromptBar from "../components/PromptBar";
 import { Button } from "@/components/ui/button";
@@ -11,8 +12,9 @@ import { Textarea } from "@/components/ui/textarea";
 
 
 function Story() {
-    // Hook to manage textarea content
-    const [text, setText] = useState("");
+    
+    const [text, setText] = useState(""); // Hook to manage textarea content
+    const navigate = useNavigate(); // Hook to navigate between pages
 
     // Function to handle the "Generate Prompts" button click
     const handleGeneratePrompts = async () => {
@@ -28,6 +30,8 @@ function Story() {
                 throw new Error("Failed to generate prompts");
             }
             const data = await res.json();
+            console.log(data.prompts); 
+            navigate("/scenes", { state: { prompts: data.prompts } }); // Navigate to the scenes page and send the prompts as state
             console.log("Received prompts:", data);
         } catch (error) {
             console.error("Error:", error);
