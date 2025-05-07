@@ -2,7 +2,7 @@
  * Author: Thamzid Karim
  * Date: 4/5/2025
  *
- * This module interacts with the Google Gemini AI API to generate prompts based on provided input.
+ * This module interacts with the Google Gemini AI API to generate responses based on provided input.
  */
 
 import dotenv from "dotenv";
@@ -39,6 +39,45 @@ export const generatePrompts = async (text) => {
       },
     });
     return response.text;
+  } catch (error) {
+    console.error("Error generating content:", error);
+    throw error;
+  }
+}
+
+// Export a function to generate responses using the Gemini model
+export const generateResponses = async (text) => {
+  try {
+    const chat = await ai.chats.create({
+      model: "gemini-2.0-flash",
+      contents: text,
+      history: [
+        {
+          role: "user",
+          parts: [{ text: "Hello" }],
+        },
+        {
+          role: "model",
+          parts: [{ text: "Great to meet you. What would you like to know?" }],
+        },
+      ],
+      config: {
+        systemInstruction:
+        `You are a scriptwriting assistant. Your task is to generate ideas for a script based on the provided input by the user.
+        Responses should be creative and imaginative, suitable for a script.
+        Scripts will have a scene header, action lines, character names, and dialogue. Your task is to structure responses in the format usually used in scripts.`,
+        maxOutputTokens: 100,
+        temperature: 1,
+      },
+    });
+    const stream1 = await chat.sendMessageStream({
+      message: text,
+    });
+    let response = "";
+    for await (const chunk of stream1) {
+      response += chunk.text;
+    }
+    return response;
   } catch (error) {
     console.error("Error generating content:", error);
     throw error;

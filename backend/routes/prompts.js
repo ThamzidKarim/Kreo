@@ -7,6 +7,7 @@
 
 import express from "express";
 import { generatePrompts } from "./gemini.js";
+import { generateResponses } from "./gemini.js";
 
 const router = express.Router();
 
@@ -27,6 +28,25 @@ router.post("/generate-prompts", async (req, res) => {
             .map(line => line.replace(/^\*+\s?/, '').trim());
         console.log("Generated content:", parsedResponse);
         return res.json({ message: "Prompts generated successfully", prompts: parsedResponse });
+    } catch (error) {
+        console.error("Error generating prompts:", error);
+        return res.status(500).json({ error: "Server error" });
+    }
+});
+
+// POST /generate-responses
+router.post("/generate-responses", async (req, res) => {
+    try {
+        const {text} = req.body;
+        if (!text) {
+            return res.status(400).json({ error: "Text is required" });
+        }
+        console.log("Received text:", text)
+
+        // Call the generatePrompts function to generate prompts
+        const response = await generateResponses(text);
+        console.log("Generated content:", response);
+        return res.json({ message: "Prompts generated successfully", prompts: response });
     } catch (error) {
         console.error("Error generating prompts:", error);
         return res.status(500).json({ error: "Server error" });
