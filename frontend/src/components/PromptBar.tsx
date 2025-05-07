@@ -1,14 +1,37 @@
+// Author: Thamzid Karim
+// Date: 7/5/2025
+// Version: 2.0
+// Prompt bar component that allows user input to return AI generated responses
+
+import { useState } from "react";
+
 function PromptBar() {
+    // State to manage the prompt input
+    const [prompt, setPrompt] = useState("");
+
+    const handleClickButton = () => {
+        // Handle click event here
+        console.log("Prompt bar clicked");
+    }
     
     return (
+
+        // Prompt bar component with input field and button
         <div className="h-[121px] w-[1000px] bg-[#FFFFFF] rounded-[30px] outline-1 outline-gray-300 cursor-text shadow-lg input">
             <input 
                 type="text" 
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
                 className="w-full bg-transparent text-lg px-10 py-6 outline-none" 
                 placeholder="Describe your scenes..." 
             />
             <div className="flex justify-end mt-[-50px] mr-10">
-                <button className="bg-[#F2F2F2] text-[#000000] rounded-[20px] px-4 py-2 font-semibold">Generate</button>
+                <button 
+                    onClick={handleClickButton} 
+                    className="bg-[#F2F2F2] text-[#000000] rounded-[20px] px-4 py-2 font-semibold hover:bg-[#adadad] cursor-pointer"
+                >
+                    Generate
+                </button>
             </div>
         </div>
     );
