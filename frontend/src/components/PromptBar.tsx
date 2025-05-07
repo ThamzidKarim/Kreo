@@ -9,9 +9,26 @@ function PromptBar() {
     // State to manage the prompt input
     const [prompt, setPrompt] = useState("");
 
-    const handleClickButton = () => {
-        // Handle click event here
-        console.log("Prompt bar clicked");
+    const handleClickButton = async () => {
+        // Handles empty input
+        if (!prompt.trim()) return;
+
+        try {
+            const res = await fetch("http://localhost:5000/api/generate-responses", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ prompt }),
+            });
+            if (!res.ok) {
+                throw new Error("Failed to generate responses");
+            }
+            const data = await res.json();
+            console.log(data);
+        } catch (error) {
+            console.error("Failed to generate:", error);
+        }
     }
     
     return (
