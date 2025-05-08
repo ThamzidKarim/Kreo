@@ -5,7 +5,6 @@
  */
 
 import { useLocation } from "react-router";
-import NavBar from "../components/NavBar";
 import PromptCard from "../components/PromptCard";
 
 function Scenes() {
@@ -28,7 +27,7 @@ function Scenes() {
                 ) : (
                     <PromptCard 
                             key="empty"
-                            prompt="Add prompts to generate images or upload media"
+                            prompt=""
                     />
                 )}
             </div>
