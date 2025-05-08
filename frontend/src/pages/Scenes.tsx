@@ -14,12 +14,11 @@ function Scenes() {
     const { prompts } = location.state || {};
 
     return (
-        <div className="flex flex-col h-screen">
-            <NavBar />
+        <div className="flex items-center justify-center h-screen">
 
             {/* Display the prompts received from the Story page*/}
             <div className="flex overflow-x-auto space-x-4 py-4">
-                {prompts ? (
+                {prompts && prompts.length > 0 ? (
                     prompts.map((prompt: string, index: number) => (
                         <PromptCard 
                             key={index} 
@@ -27,7 +26,10 @@ function Scenes() {
                         />
                     ))
                 ) : (
-                    <p>No prompts to display</p>
+                    <PromptCard 
+                            key="empty"
+                            prompt="Add prompts to generate images or upload media"
+                    />
                 )}
             </div>
 
