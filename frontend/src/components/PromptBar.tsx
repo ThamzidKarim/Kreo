@@ -8,6 +8,8 @@ import { useState } from "react";
 function PromptBar() {
     // State to manage the prompt input
     const [prompt, setPrompt] = useState("");
+    const [response, setResponse] = useState("");
+
 
     const handleClickButton = async () => {
         // Handles empty input
@@ -19,13 +21,14 @@ function PromptBar() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ prompt }),
+                body: JSON.stringify({ text: prompt }),
             });
             if (!res.ok) {
                 throw new Error("Failed to generate responses");
             }
             const data = await res.json();
             console.log(data);
+            setResponse(data.prompts);
         } catch (error) {
             console.error("Failed to generate:", error);
         }
@@ -50,7 +53,13 @@ function PromptBar() {
                     Generate
                 </button>
             </div>
+
+            <div className="mt-4">
+                <h2 className="text-lg font-semibold">Response:</h2>
+                <p className="text-gray-700">{response}</p>
+            </div>
         </div>
+    
     );
 }
 
