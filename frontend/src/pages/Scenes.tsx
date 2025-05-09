@@ -6,6 +6,7 @@
 
 import { useLocation } from "react-router";
 import PromptCard from "../components/PromptCard";
+import NavBar from "@/components/NavBar";
 
 function Scenes() {
     // useLocation hook to access the location object, which contains the state passed from the Story page
@@ -13,25 +14,30 @@ function Scenes() {
     const { prompts } = location.state || {};
 
     return (
-        <div className="flex items-center justify-center h-screen">
 
+        <div className="flex h-screen">
+            <div className="w-[210px]">
+                <NavBar />
+            </div>
+            
             {/* Display the prompts received from the Story page*/}
-            <div className="flex overflow-x-auto space-x-4 py-4">
-                {prompts && prompts.length > 0 ? (
-                    prompts.map((prompt: string, index: number) => (
+            <div className="flex-1 flex items-center justify-start overflow-x-auto p-4">
+                <div className="flex space-x-4">
+                    {prompts && prompts.length > 0 ? (
+                        prompts.map((prompt: string, index: number) => (
+                            <PromptCard 
+                                key={index} 
+                                prompt={prompt} 
+                            />
+                        ))
+                    ) : (
                         <PromptCard 
-                            key={index} 
-                            prompt={prompt} 
-                        />
-                    ))
-                ) : (
-                    <PromptCard 
                             key="empty"
                             prompt=""
-                    />
-                )}
+                        />
+                    )}
+                </div>
             </div>
-
         </div>
     );
 
