@@ -1,26 +1,45 @@
 /**
  * Author: Thamzid Karim
- * Date: 6/5/2025
- * This component displays a basic timeline UI with separate horizontal rails for video and audio tracks.
+ * Date: 11/5/2025
+ * This component displays a dynamic timeline and flexible media tracks.
  */
 
-import {
-    Card,
-    CardContent,
-  } from "@/components/ui/card"
-  
+import { Card } from "@/components/ui/card"
 
 function Timeline() {
-    return (
-        <Card className="flex flex-col items-center w-full">
-            <Card className="w-full">
-                <CardContent>Video</CardContent>
-            </Card> 
-            <Card className="w-full">
-                <CardContent>Audio</CardContent>
-            </Card>    
-        </Card>    
-    )
+  const seconds = 10;
+
+  // Starts with 3 empty tracks
+  const tracks = Array(3).fill(null);
+
+  return (
+    <Card className="min w-screen overflow-x-auto ml-8">
+      <div className="px-3 space-y-2">
+
+        {/* Time ruler */}
+        <div className="flex h-[20px]">
+          {Array.from({ length: seconds }).map((_, index) => (
+            <div
+              key={index}
+              className="w-[100px] border-r border-gray-400 text-xs text-center text-gray-500"
+            >
+              {index}s
+            </div>
+          ))}
+        </div>
+
+        {/* Dynamic tracks */}
+        {tracks.map((_, index) => (
+          <div
+            key={index}
+            className={"flex h-[60px] rounded-sm border border-gray-300 bg-gray-200"}
+          >
+          </div>
+        ))}
+
+      </div>
+    </Card>
+  );
 }
 
 export default Timeline;

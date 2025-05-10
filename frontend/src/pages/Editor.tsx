@@ -1,17 +1,21 @@
+/**
+ * Author: Thamzid Karim
+ * Date: 11/5/2025
+ * This page displays the video editor interface with a timeline and media tracks.
+ */
+
 import Timeline from "../components/Timeline";
 import NavBar from "../components/NavBar";
 
 function Editor() {
     return(
-        <div className="flex flex-col h-screen">
-            <NavBar />
-            <div className="flex flex-col flex-grow items-center justify-start px-4">
-                <h1>Editor</h1>
+        <div className="flex h-screen">
+            <div className="w-[210px]">
+                <NavBar />
+            </div>
 
-                <div className="mt-auto w-full max-w-5xl">
-                    <Timeline />
-                </div>
-                
+            <div className="flex items-end justify-start overflow-x-auto p-4">
+               <Timeline /> 
             </div>
         </div>
     );
