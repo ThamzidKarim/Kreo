@@ -6,6 +6,7 @@
 
 import { useDroppable } from '@dnd-kit/core';
 
+// Define the props for the DroppableTrack component
 type DroppableTrackProps = {
   id: string;
   children: React.ReactNode;

@@ -5,7 +5,9 @@
  */
 
 import { Card } from "@/components/ui/card"
-import {DndContext} from '@dnd-kit/core';
+import { DndContext } from "@dnd-kit/core";
+
+import DroppableTrack from "./DroppableTrack";
 
 function Timeline() {
   const seconds = 10;
@@ -13,9 +15,11 @@ function Timeline() {
   // Starts with 3 empty tracks
   const tracks = Array(3).fill(null);
 
+
+
   return (
     <DndContext>
-      <Card className="min w-screen overflow-x-auto ml-8">
+      <Card className="overflow-x-auto">
         <div className="px-3 space-y-2">
 
           {/* Time ruler */}
@@ -30,13 +34,15 @@ function Timeline() {
             ))}
           </div>
 
-          {/* Dynamic tracks */}
+          {/* Dynamic droppable tracks */}
           {tracks.map((_, index) => (
-            <div
+            <DroppableTrack
               key={index}
-              className={"flex h-[60px] rounded-sm border border-gray-300 bg-gray-200"}
+              id={`track-${index}`}
             >
-            </div>
+             <div className="flex h-[60px] rounded-sm border border-gray-300 bg-gray-200"></div>
+            
+            </DroppableTrack>
           ))}
 
         </div>
