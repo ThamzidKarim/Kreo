@@ -5,6 +5,7 @@
  */
 
 import { Card } from "@/components/ui/card"
+import {DndContext} from '@dnd-kit/core';
 
 function Timeline() {
   const seconds = 10;
@@ -13,32 +14,35 @@ function Timeline() {
   const tracks = Array(3).fill(null);
 
   return (
-    <Card className="min w-screen overflow-x-auto ml-8">
-      <div className="px-3 space-y-2">
+    <DndContext>
+      <Card className="min w-screen overflow-x-auto ml-8">
+        <div className="px-3 space-y-2">
 
-        {/* Time ruler */}
-        <div className="flex h-[20px]">
-          {Array.from({ length: seconds }).map((_, index) => (
+          {/* Time ruler */}
+          <div className="flex h-[20px]">
+            {Array.from({ length: seconds }).map((_, index) => (
+              <div
+                key={index}
+                className="w-[100px] border-r border-gray-400 text-xs text-center text-gray-500"
+              >
+                {index}s
+              </div>
+            ))}
+          </div>
+
+          {/* Dynamic tracks */}
+          {tracks.map((_, index) => (
             <div
               key={index}
-              className="w-[100px] border-r border-gray-400 text-xs text-center text-gray-500"
+              className={"flex h-[60px] rounded-sm border border-gray-300 bg-gray-200"}
             >
-              {index}s
             </div>
           ))}
+
         </div>
-
-        {/* Dynamic tracks */}
-        {tracks.map((_, index) => (
-          <div
-            key={index}
-            className={"flex h-[60px] rounded-sm border border-gray-300 bg-gray-200"}
-          >
-          </div>
-        ))}
-
-      </div>
-    </Card>
+      </Card>
+    </DndContext>
+    
   );
 }
 
