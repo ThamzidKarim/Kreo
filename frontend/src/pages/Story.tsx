@@ -1,6 +1,6 @@
 /*
  * Author: Thamzid Karim
- * Date: 5/5/2025
+ * Date: 12/5/2025
  * Story page with textarea input and "Generate Prompts" button that sends the input text to the backend via POST.
 */
 import { useState } from "react";
@@ -9,11 +9,12 @@ import NavBar from "../components/NavBar";
 import PromptBar from "../components/PromptBar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-
+import { Card } from "@/components/ui/card";
 
 function Story() {
     
     const [text, setText] = useState(""); // Hook to manage textarea content
+    const [messages, setMessages] = useState<{ userPrompt: string; aiResponse: string }[]>([]);
     const navigate = useNavigate(); // Hook to navigate between pages
 
     // Function to handle the "Generate Prompts" button click
@@ -38,11 +39,15 @@ function Story() {
         }
     };
 
-
     return(
-        <div className="flex flex-col h-screen">
-            <NavBar />
-            <div className="flex flex-col items-center flex-grow pl-30 pt-30">
+        <div className="flex h-screen">
+
+            <div className="w-[210px]">
+                <NavBar />
+            </div>
+
+            <div className="flex-1 flex flex-col items-center pl-30 pt-30">
+                
                 {/* Textarea for user text input and button to generate prompts */}
                 <div className="grid w-md gap-4">
                     <Textarea 
@@ -60,9 +65,24 @@ function Story() {
 
                 {/* Prompt bar at the bottom */}
                 <div className="mt-auto mb-10">
-                    <PromptBar />
+                    <PromptBar 
+                        onSend={(userPrompt: string, aiResponse: string) =>
+                            setMessages([...messages, { userPrompt, aiResponse }])
+                        }
+                    />
                 </div>
             </div>
+
+            {/* Chat Sidebar on Right */}
+            <Card className="w-[400px] my-3 mx-3 bg-gray-100 p-4 overflow-y-auto">
+                <h2 className="text-xl font-bold mb-4">Kreo Chat</h2>
+                {messages.map((msg, i) => (
+                    <div key={i} className="mb-4">
+                        <p className="font-semibold text-right">You: {msg.userPrompt}</p>
+                        <p className="text-left text-gray-800">AI: {msg.aiResponse}</p>
+                    </div>
+                ))}
+            </Card>
         </div>
     );
 

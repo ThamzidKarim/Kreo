@@ -47,11 +47,13 @@ function Editor() {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="flex h-screen">
+        
         <div className="w-[210px]">
           <NavBar />
         </div>
 
         <div className="flex-1 flex flex-col items-start p-4 space-y-4">
+          
           {/* Media pool */}
           <Card className="flex-1 max-h-[600px] p-2 flex space-x-4 max-w-[200px]">
             <DraggableMedia
