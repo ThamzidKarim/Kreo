@@ -9,6 +9,8 @@ import PromptCard from "../components/PromptCard";
 import NavBar from "@/components/NavBar";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import PromptBar from "@/components/PromptBar";
+import { Card } from "@/components/ui/card";
 
 function Scenes() {
     
@@ -18,6 +20,7 @@ function Scenes() {
     const initialPrompts = (location.state && location.state.prompts) ? location.state.prompts : [""];
     // Set up a state variable called prompts, starting with initialPrompts
     const [prompts, setPrompts] = useState(initialPrompts);
+    const [messages, setMessages] = useState<{ userPrompt: string; aiResponse: string }[]>([]);
 
     // Add a new empty prompt to the array
     function addNewPrompt() {
@@ -33,7 +36,7 @@ function Scenes() {
             </div>
             
             {/* Display the prompts received from the Story page*/}
-            <div className="flex-1 flex items-center justify-start overflow-x-auto p-4">
+            <div className="flex flex-1 flex-col items-center justify-between overflow-x-auto p-20">
                 <div className="flex space-x-4">
                     {prompts && prompts.length > 0 ? (
                         prompts.map((prompt: string, index: number) => (
@@ -46,7 +49,7 @@ function Scenes() {
                         <PromptCard 
                             key="empty"
                             prompt=""
-                        />                        
+                        />                     
                     )
                     }
                         <div className="items-center justify-center">
@@ -55,7 +58,28 @@ function Scenes() {
                             </Button>
                         </div>
                 </div>
+
+                {/* Prompt bar at the bottom */}
+                <div>
+                    <PromptBar 
+                        onSend={(userPrompt: string, aiResponse: string) =>
+                            setMessages([...messages, { userPrompt, aiResponse }])
+                        }
+                    />
+                </div>
             </div>
+            
+            {/* Chat Sidebar on Right */}
+            <Card className="w-[400px] my-3 mx-3 bg-gray-100 p-4 overflow-y-auto">
+                <h2 className="text-xl font-bold mb-4">Kreo Chat</h2>
+                {messages.map((msg, i) => (
+                    <div key={i} className="mb-4">
+                        <p className="font-semibold text-right">You: {msg.userPrompt}</p>
+                        <p className="text-left text-gray-800">AI: {msg.aiResponse}</p>
+                    </div>
+                ))}
+            </Card>
+            
         </div>
     );
 
