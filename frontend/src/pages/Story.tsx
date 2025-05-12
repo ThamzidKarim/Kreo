@@ -10,6 +10,9 @@ import PromptBar from "../components/PromptBar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
+import PDFInput from "@/components/PDFInput";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 
 function Story() {
     
@@ -48,21 +51,38 @@ function Story() {
 
             <div className="flex-1 flex flex-col items-center pl-30 pt-30">
                 
-                {/* Textarea for user text input and button to generate prompts */}
-                <div className="grid w-md gap-4">
-                    <Textarea 
-                        placeholder="Type your text here. Max length is 10,000..."
-                        maxLength={10000}
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        className="min-h-100 max-h-100 resize-none"
-                    />
-                    <p className="text-sm text-muted-foreground text-right">
-                        {text.length.toLocaleString()} / 10,000 characters
-                    </p>
-                    <Button onClick={handleGeneratePrompts}>Generate Prompts</Button>
-                </div>
-
+                {/* Tabs to switch between upload and writing modes*/}
+                <Tabs defaultValue="write" className="w-[400px] items-center">
+                    <TabsList>
+                        <TabsTrigger value="write">Write</TabsTrigger>
+                        <TabsTrigger value="upload">Upload Script</TabsTrigger>
+                    </TabsList>
+                    {/* Writing mode*/}
+                    <TabsContent value="write">
+                        {/* Textarea for user text input and button to generate prompts */}
+                        <div className="grid w-md gap-4">
+                            <Textarea 
+                                placeholder="Type your text here. Max length is 10,000..."
+                                maxLength={10000}
+                                value={text}
+                                onChange={(e) => setText(e.target.value)}
+                                className="min-h-100 max-h-100 resize-none"
+                            />
+                            <p className="text-sm text-muted-foreground text-right">
+                                {text.length.toLocaleString()} / 10,000 characters
+                            </p>
+                            <Button onClick={handleGeneratePrompts}>Generate Prompts</Button>
+                        </div>
+                    </TabsContent>
+                    {/* Upload mode*/}
+                    <TabsContent value="upload">
+                        <div className="grid w-md gap-4">
+                            <PDFInput />
+                            <Button onClick={handleGeneratePrompts}>Generate Prompts</Button>
+                        </div>
+                    </TabsContent>
+                </Tabs>
+                
                 {/* Prompt bar at the bottom */}
                 <div className="mt-auto mb-10">
                     <PromptBar 
@@ -73,7 +93,7 @@ function Story() {
                 </div>
             </div>
 
-            {/* Chat Sidebar on Right */}
+            {/* Chat Sidebar on right */}
             <Card className="w-[400px] my-3 mx-3 bg-gray-100 p-4 overflow-y-auto">
                 <h2 className="text-xl font-bold mb-4">Kreo Chat</h2>
                 {messages.map((msg, i) => (
