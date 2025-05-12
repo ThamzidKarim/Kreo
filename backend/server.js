@@ -9,6 +9,7 @@ import express from "express";
 import upload from "./routes/upload.js";
 import prompts from "./routes/prompts.js";
 import image from "./routes/image.js";
+import video from "./routes/video.js";
 import cors from "cors";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/api', upload);
 app.use('/api', prompts);
 app.use('/api', image);
+app.use('/api', video);
 
 const port = process.env.PORT || 5000;
 

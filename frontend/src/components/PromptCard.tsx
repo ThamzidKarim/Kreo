@@ -1,7 +1,7 @@
 /*
  * Author: Thamzid Karim
- * Date: 5/5/2025
- * PromptCard component that displays a prompt in a card format.
+ * Date: 12/5/2025
+ * PromptCard component that displays a prompt, generated images, and videos, in a card format.
 */
 
 import { Textarea } from "@/components/ui/textarea";
@@ -17,21 +17,49 @@ import { ArrowsRightLeftIcon, PencilIcon, PhotoIcon, VideoCameraIcon } from "@he
 import axios from "axios";
 
 const PromptCard = ({ prompt }: {prompt: string}) => {
-
+    // State variables for managing prompt text, image URL, video URL, and image ID
     const [text, setText] = useState(prompt || ""); // Hook to manage textarea content
     const [imageUrl, setImageUrl] = useState<string | null>(null); // state for storing the generated image URL
+    const [videoUrl, setVideoUrl] = useState<string | null>(null); // state for storing the generated video URL
+    const [imageId, setImageId] = useState<string | null>(null); // state for storing the generated video URL
 
-
-    const handleClickButton = async () => {
+    // Handles image generation
+    const handleGenerateImage = async () => {
         // Handles empty input
         if (!text.trim()) return;
+
+        // Can regenerate videos
+        setVideoUrl(null);
+
         try {
+            // Make a POST request to generate an image based on the prompt text
             const res = await axios.post("http://localhost:5000/api/generate-images", {
                 text,
             });
             console.log(res.data)
+            setImageId(res.data.imageId);
             setImageUrl(res.data.imageUrl);
             console.log("Generated Image URL:", res.data.imageUrl);
+        } catch (error) {
+            console.error("Failed to generate:", error);
+        }
+    }
+
+    // Handles video generation
+    const handleGenerateVideo = async () => {
+        // Handles empty input
+        if (!imageId) return;
+
+        setVideoUrl(null);
+        
+        try {
+            // Make a POST request to generate a video based on the image ID
+            const res = await axios.post("http://localhost:5000/api/generate-videos", {
+                imageId,
+            });
+            console.log(res.data)
+            setVideoUrl(res.data.videoUrl);
+            console.log("Generated Video URL:", res.data.videoUrl);
         } catch (error) {
             console.error("Failed to generate:", error);
         }
@@ -50,7 +78,7 @@ const PromptCard = ({ prompt }: {prompt: string}) => {
                     <Tooltip>
                         <TooltipTrigger>
                             <Button 
-                            onClick={handleClickButton}
+                            onClick={handleGenerateImage}
                             className="flex items-center justify-center rounded-full bg-[#F8F5F5] hover:bg-[#adadad] cursor-pointer w-[40px] h-[40px]"
                             >
                                 <PhotoIcon className="stroke-black size-8" />
@@ -66,7 +94,8 @@ const PromptCard = ({ prompt }: {prompt: string}) => {
                 <TooltipProvider >
                     <Tooltip>
                         <TooltipTrigger>
-                            <Button className="flex items-center justify-center rounded-full bg-[#F8F5F5] hover:bg-[#adadad] cursor-pointer w-[40px] h-[40px]"
+                            <Button onClick={handleGenerateVideo}
+                            className="flex items-center justify-center rounded-full bg-[#F8F5F5] hover:bg-[#adadad] cursor-pointer w-[40px] h-[40px]"
                             >
                                 <VideoCameraIcon className="stroke-black size-8" />
                             </Button>
@@ -116,6 +145,7 @@ const PromptCard = ({ prompt }: {prompt: string}) => {
                 className="mt-12 h-full w-full text-center py-[200px] resize-none text-black border-none"
             />
 
+            {/* If an image URL is available, display the generated image */}
             {imageUrl ? (
                 <div className="absolute flex justify-center items-center">
                 <img
@@ -123,6 +153,17 @@ const PromptCard = ({ prompt }: {prompt: string}) => {
                     alt="Generated"
                     className="max-w-full max-h-full object-cover rounded-lg shadow-md"
                 />
+            </div>
+            ):
+                null
+            }
+
+            {/* If a video URL is available, display the generated video */}
+            {videoUrl ? (
+                <div className="absolute flex justify-center items-center">
+                <video controls className="max-w-full max-h-full object-cover rounded-lg shadow-md">
+                    <source src={videoUrl} type="video/mp4" />
+                </video>
             </div>
             ):
                 null
