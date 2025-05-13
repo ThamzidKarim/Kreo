@@ -1,13 +1,13 @@
 /**
  * Author: Thamzid Karim
- * Date: 11/5/2025
+ * Date: 13/5/2025
  * This component displays a dynamic timeline and flexible media tracks.
  */
 
 import { Card } from "@/components/ui/card";
 import DroppableTrack from "./DroppableTrack";
 
-function Timeline({ droppedItems }: { droppedItems: { [key: string]: any[] } }) {
+function Timeline({ droppedItems, onSelect }: { droppedItems: { [key: string]: any[] }; onSelect: (item: any) => void; }) {
   const seconds = 10;
 
   // Starts with 3 empty tracks
@@ -40,7 +40,8 @@ function Timeline({ droppedItems }: { droppedItems: { [key: string]: any[] } }) 
                     key={i}
                     src={item.mediaContent}
                     alt="Dropped"
-                    style={{ width: "100px" }}
+                    style={{ width: "100px", cursor: "pointer" }}
+                    onClick={() => onSelect(item)}
                   />
                 ))}
               </div>
