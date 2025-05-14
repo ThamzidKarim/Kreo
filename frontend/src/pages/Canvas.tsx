@@ -9,12 +9,14 @@ import NavBar from "../components/NavBar";
 import PromptBar from "../components/PromptBar";
 import { Card } from "@/components/ui/card";
 import PromptCard from "@/components/PromptCard";
+import ImageUpload from "@/components/UploadImage";
 
 // Canvas component that displays a single editable prompt card, a chat sidebar, and a prompt input bar.
 function Canvas() {
 
     const [prompt, setPrompt] = useState(""); 
     const [messages, setMessages] = useState<{ userPrompt: string; aiResponse: string }[]>([]);
+    const [images, setImages] = useState<File[]>([]);
 
     return(
         <div className="flex h-screen">
@@ -28,6 +30,9 @@ function Canvas() {
                 {/* PromptCard */}
                 <div>
                     <PromptCard prompt={prompt} setPrompt={setPrompt} />
+                    <div className="flex-1 p-4">
+                         <ImageUpload onImagesChange={setImages} />
+                    </div>
                 </div>
                 
                 {/* Prompt bar at the bottom */}
