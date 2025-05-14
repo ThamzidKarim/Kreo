@@ -1,6 +1,6 @@
 /*
  * Author: Thamzid Karim
- * Date: 12/5/2025
+ * Date: 14/5/2025
  * PromptCard component that displays a prompt, generated images, and videos, in a card format.
 */
 
@@ -16,7 +16,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowsRightLeftIcon, PencilIcon, PhotoIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 
-const PromptCard = ({ prompt }: {prompt: string}) => {
+// PromptCard component that handles the user input for prompts and displays generated images/videos.
+const PromptCard = ({ prompt }: { prompt: string; setPrompt: (text: string) => void }) => {
     // State variables for managing prompt text, image URL, video URL, and image ID
     const [text, setText] = useState(prompt || ""); // Hook to manage textarea content
     const [imageUrl, setImageUrl] = useState<string | null>(null); // state for storing the generated image URL

@@ -1,6 +1,6 @@
 /*
  * Author: Thamzid Karim
- * Date: 5/5/2025
+ * Date: 14/5/2025
  * Scenes page that receives prompts from Story page via state and displays them.
  */
 
@@ -12,6 +12,7 @@ import { useState } from "react";
 import PromptBar from "@/components/PromptBar";
 import { Card } from "@/components/ui/card";
 
+// Scenes component that renders multiple prompt cards.
 function Scenes() {
     
     // useLocation hook to access the location object, which contains the state passed from the Story page
@@ -43,12 +44,18 @@ function Scenes() {
                             <PromptCard 
                                 key={index} 
                                 prompt={prompt} 
+                                setPrompt={(newPrompt: string) => {
+                                const updatedPrompts = [...prompts];
+                                updatedPrompts[index] = newPrompt; // Update the specific prompt
+                                setPrompts(updatedPrompts); // Update the state with the new prompts array
+                            }}
                             />
                         ))
                     ) : (
                         <PromptCard 
                             key="empty"
                             prompt=""
+                            setPrompt={() => {}}
                         />                     
                     )
                     }

@@ -7,6 +7,7 @@ const NavLinks = [
   { name: "Story", path: "/story", icon: <HomeIcon className="size-7" />},
   { name: "Scenes", path: "/scenes", icon: <HomeIcon className="size-7" />},
   { name: "Editor", path: "/editor", icon: <HomeIcon className="size-7" />},
+  { name: "Canvas", path: "/canvas", icon: <HomeIcon className="size-7" />},
   { name: "For You", path: "/for-you", icon: <HomeIcon className="size-7" />},
 ];
 

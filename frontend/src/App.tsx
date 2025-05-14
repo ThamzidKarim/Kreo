@@ -8,6 +8,7 @@ import Scenes from './pages/Scenes.tsx';
 import Story from './pages/Story.tsx';
 import NewProject from './pages/NewProject.tsx';
 import ForYou from './pages/ForYou.tsx';
+import Canvas from './pages/Canvas.tsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="scenes" element={<Scenes />} />
           <Route path="story" element={<Story />} />
           <Route path="new-project" element={<NewProject />} />
+          <Route path="canvas" element={<Canvas />} />
           <Route path="for-you" element={<ForYou />} />
         </Routes>
       </BrowserRouter>
