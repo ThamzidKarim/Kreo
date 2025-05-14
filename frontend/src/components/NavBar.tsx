@@ -1,14 +1,14 @@
-import { Bars3Icon, HomeIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, HomeIcon, FolderIcon, BookOpenIcon, FilmIcon, PencilIcon, PaintBrushIcon, RadioIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router";
 
 const NavLinks = [
   { name: "Home", path: "/home", icon: <HomeIcon className="size-7" />},
-  { name: "Library", path: "/library", icon: <HomeIcon className="size-7" />},
-  { name: "Story", path: "/story", icon: <HomeIcon className="size-7" />},
-  { name: "Scenes", path: "/scenes", icon: <HomeIcon className="size-7" />},
-  { name: "Editor", path: "/editor", icon: <HomeIcon className="size-7" />},
-  { name: "Canvas", path: "/canvas", icon: <HomeIcon className="size-7" />},
-  { name: "For You", path: "/for-you", icon: <HomeIcon className="size-7" />},
+  { name: "Library", path: "/library", icon: <FolderIcon className="size-7" />},
+  { name: "Story", path: "/story", icon: <BookOpenIcon className="size-7" />},
+  { name: "Scenes", path: "/scenes", icon: <FilmIcon className="size-7" />},
+  { name: "Editor", path: "/editor", icon: <PencilIcon className="size-7" />},
+  { name: "Canvas", path: "/canvas", icon: <PaintBrushIcon className="size-7" />},
+  { name: "For You", path: "/for-you", icon: <RadioIcon className="size-7" />},
 ];
 
 function NavBar() {
