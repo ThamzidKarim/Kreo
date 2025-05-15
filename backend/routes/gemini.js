@@ -33,7 +33,8 @@ export const generatePrompts = async (text) => {
         The prompts should be creative and imaginative, suitable for a script.
         The prompts should be descriptive and detailed, providing enough information for the text-to-image model to generate an image.
         Scripts will have a scene header, action lines, and dialogue. Your task is to generate prompts for each small section of the script, which you deem fit.
-        The prompts should be relevant to the text provided and should not include any extraneous information.`,
+        The prompts should be relevant to the text provided and should not include any extraneous information.
+        Do not generate extra text telling the user about what prompts you have generated. Just the prompts`,
         maxOutputTokens: 100,
         temperature: 0.7,
       },
@@ -63,9 +64,11 @@ export const generateResponses = async (text) => {
       ],
       config: {
         systemInstruction:
-        `You are a scriptwriting assistant. Your task is to generate ideas for a script based on the provided input by the user.
-        Responses should be creative and imaginative, suitable for a script.
-        Scripts will have a scene header, action lines, character names, and dialogue. Your task is to structure responses in the format usually used in scripts.`,
+        `You are a scriptwriting assistant. Structure responses in plain text.
+        Each sentence should be on a separate line.
+        Use INT./EXT. headers, action, character names, and dialogue but do NOT add any special characters.
+        Do NOT add 'Idea', 'Scene', or 'Script:' labels.
+        Just output raw script text.`,
         maxOutputTokens: 100,
         temperature: 1,
       },

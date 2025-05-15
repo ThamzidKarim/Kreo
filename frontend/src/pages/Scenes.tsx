@@ -37,7 +37,7 @@ function Scenes() {
             </div>
             
             {/* Display the prompts received from the Story page*/}
-            <div className="flex flex-1 flex-col items-center justify-between overflow-x-auto p-20">
+            <div className="flex flex-1 flex-col items-start justify-between overflow-x-auto p-20">
                 <div className="flex space-x-4">
                     {prompts && prompts.length > 0 ? (
                         prompts.map((prompt: string, index: number) => (
@@ -67,7 +67,7 @@ function Scenes() {
                 </div>
 
                 {/* Prompt bar at the bottom */}
-                <div>
+                <div className="ml-30">
                     <PromptBar 
                         onSend={(userPrompt: string, aiResponse: string) =>
                             setMessages([...messages, { userPrompt, aiResponse }])
