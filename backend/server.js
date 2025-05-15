@@ -12,6 +12,9 @@ import image from "./routes/image.js";
 import video from "./routes/video.js";
 import projects from "./routes/projects.js"; 
 import cors from "cors";
+import library from "./routes/library.js";
+
+
 
 const app = express();
 app.use(cors());
@@ -23,6 +26,7 @@ app.use('/api', prompts);
 app.use('/api', image);
 app.use('/api', video);
 app.use('/api', projects);
+app.use("/api", library);
 
 const port = process.env.PORT || 5000;
 
