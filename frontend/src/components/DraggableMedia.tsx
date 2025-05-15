@@ -1,8 +1,8 @@
 /**
  * Author: Thamzid Karim
- * Date: 11/5/2025
+ * Date: 15/5/2025
  * This component uses the DnD Kit library to manage drag-and-drop functionality.
-*/
+ */
 
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
@@ -10,37 +10,29 @@ import { CSS } from '@dnd-kit/utilities';
 // Define the props for the DraggableMedia component
 type DraggableMediaProps = {
   id: string;
-  mediaType: string;
-  mediaContent: string;
+  data: {
+    id: string; 
+    mediaType: string;  // "image" or "video"
+    mediaContent: string; // URL or path of the media file
+  };
+  children: React.ReactNode;
 };
 
-function DraggableMedia({ id, mediaType, mediaContent }: DraggableMediaProps) {
+function DraggableMedia({ id, data, children }: DraggableMediaProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
-    data: {
-      id,
-      mediaType,
-      mediaContent,
-    },
+    data,
   });
 
   const style = {
     transform: CSS.Translate.toString(transform),
-    width: "100px",
-    height: "60px",
     cursor: "grab",
   };
 
   return (
-    <button ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      {mediaType === "image" && (
-        <img
-          src={mediaContent}
-          alt="Draggable Media"
-          className="w-full h-full object-cover"
-        />
-      )}
-    </button>
+    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+      {children}
+    </div>
   );
 }
 

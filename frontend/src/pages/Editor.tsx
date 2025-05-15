@@ -7,23 +7,12 @@
 import { useState, useEffect, useRef } from "react";
 import { DndContext } from "@dnd-kit/core";
 import NavBar from "../components/NavBar";
-import DraggableMedia from "./../components/DraggableMedia";
 import Timeline from "../components/Timeline";
 import { Card } from "@/components/ui/card";
+import MediaPool from "../components/MediaPool"; 
+
 
 function Editor() {
-  // Dummy media for testing
-  const testMedia = {
-    id: "img-1",
-    mediaType: "image",
-    mediaContent: "/image.jpeg",
-  };
-
-  const testMedia2 = {
-    id: "img-2",
-    mediaType: "video",
-    mediaContent: "/video.mp4",
-  };
   // Stores dropped items per track
   const [droppedItems, setDroppedItems] = useState<{ [key: string]: any[] }>({});
   // Stores currently selected media for preview
@@ -108,18 +97,12 @@ function Editor() {
         <div className="flex-col flex-1">
           <div className="flex flex-row p-4 space-x-4">
             {/* Media pool */}
-            <Card className="flex-1 max-h-[600px] max-w-[200px]">
-              <DraggableMedia
-                id={testMedia.id}
-                mediaType={testMedia.mediaType}
-                mediaContent={testMedia.mediaContent}
-              />
-              <DraggableMedia
-                id={testMedia2.id}
-                mediaType={testMedia2.mediaType}
-                mediaContent={testMedia2.mediaContent}
-              />
+            <Card className="flex-1 max-h-[600px] max-w-[200px] p-2 overflow-auto">
+              <div className="flex flex-wrap gap-2 justify-start">
+                <MediaPool />
+              </div>
             </Card>
+
 
             {/* Preview window for selected or dropped media */}
             <Card className="flex-1 h-[500px] bg-black flex items-center justify-center relative">
