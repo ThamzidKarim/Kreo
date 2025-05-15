@@ -13,6 +13,8 @@ import video from "./routes/video.js";
 import projects from "./routes/projects.js"; 
 import cors from "cors";
 import library from "./routes/library.js";
+import forYouRoute from "./routes/foryou.js";
+
 
 
 
@@ -27,6 +29,8 @@ app.use('/api', image);
 app.use('/api', video);
 app.use('/api', projects);
 app.use("/api", library);
+app.use("/api", forYouRoute);
+
 
 const port = process.env.PORT || 5000;
 
