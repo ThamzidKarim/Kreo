@@ -5,7 +5,7 @@
  * Tests the Gemini AI by calling the generateContent function 
  * and logging the result to the console.
  */
-import { generateContent } from "../routes/gemini.js";
+import { generateContent } from "../backend/routes/gemini.js";
 
 // Calls generateContent with a test prompt and logs the result
 const geminiTest = async () => {

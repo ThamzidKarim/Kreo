@@ -40,7 +40,7 @@ function PromptBar({ onSend }: {onSend: (userPrompt: string, aiResponse: string)
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 className="w-full bg-transparent text-lg px-10 py-6 outline-none" 
-                placeholder="Describe your scenes..." 
+                placeholder="Chat with me to brainstorm ideas, enhance your scripts, or enhance your prompts..." 
             />
             <div className="flex justify-end mt-[-50px] mr-10">
                 <button 
