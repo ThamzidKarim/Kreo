@@ -29,7 +29,7 @@ const PromptCard = ({ prompt }: { prompt: string; setPrompt: (text: string) => v
         // Handles empty input
         if (!text.trim()) return;
 
-        // Can regenerate videos
+        // Clears videos
         setVideoUrl(null);
 
         try {
@@ -152,7 +152,7 @@ const PromptCard = ({ prompt }: { prompt: string; setPrompt: (text: string) => v
                 <img
                     src={imageUrl}
                     alt="Generated"
-                    className="max-w-full max-h-full object-cover rounded-lg shadow-md"
+                    className="mt-[20px] w-[400px] h-[400px] object-cover rounded-lg shadow-md"
                 />
             </div>
             ):

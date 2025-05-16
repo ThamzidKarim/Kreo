@@ -1,12 +1,17 @@
 /*
  * Author: Thamzid Karim
- * Date: 12/5/2025
+ * Date: 16/5/2025
  *
  * Defines the /generate-images route to handle image generation requests.
  */
 
 import express from "express";
 import { pool } from "../databasepg.js";
+import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 
 const router = express.Router();
 
@@ -19,7 +24,28 @@ router.post("/generate-images", async (req, res) => {
         }
         console.log("Received text:", text)
 
-        // TODO: Call the generateImages function to generate prompts
+        // Call the generateImages function to generate prompts
+        const response = await axios.post(
+            'https://external.api.recraft.ai/v1/images/generations',
+            {
+                prompt: text,
+                style: 'digital_illustration',
+                size: '1024x1024',
+                model: 'recraftv3',
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.RECRAFT_API_KEY}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+
+        // Grab generated image URL
+        const imageUrl = response.data?.data?.[0]?.url;
+        if (!imageUrl) {
+            return res.status(500).json({ error: "Image generation failed" });
+        }
 
         // Query to insert prompt into prompts table
         const promptResult = await pool.query(
@@ -28,8 +54,8 @@ router.post("/generate-images", async (req, res) => {
         )
         const promptId = promptResult.rows[0].id;
 
-        const imageUrl = "image.jpeg";
-        // Query to insert values into db (test image)
+    
+        // Query to insert values into db
         const result = await pool.query(
             "INSERT INTO images (image_url, prompt_id, created_at) VALUES ($1, $2, NOW()) RETURNING *",
             [imageUrl, promptId]
