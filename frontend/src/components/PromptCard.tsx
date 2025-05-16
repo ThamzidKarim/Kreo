@@ -162,7 +162,7 @@ const PromptCard = ({ prompt }: { prompt: string; setPrompt: (text: string) => v
             {/* If a video URL is available, display the generated video */}
             {videoUrl ? (
                 <div className="absolute flex justify-center items-center">
-                <video controls className="max-w-full max-h-full object-cover rounded-lg shadow-md">
+                <video controls className="mt-[20px] w-[400px] h-[400px] object-cover rounded-lg shadow-md">
                     <source src={videoUrl} type="video/mp4" />
                 </video>
             </div>
